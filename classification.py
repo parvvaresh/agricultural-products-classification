@@ -15,6 +15,15 @@ def classification(df : pd.DataFrame,
 
 
 
-path = "" # add this
-df = pd.read_csv(path)
-classification(df , "lable_column")
+path_csv = "/home/reza/hamedan_seifi.csv"
+df = pd.read_csv(path_csv)
+
+def binary(lable, traget):
+    if lable != traget:
+        return "other"
+    return lable
+
+df["Name"] = df["Name"].apply(lambda x : binary(x, "wi-wr-br-bi"))
+
+df = df.sample(100)
+classification(df , "Name", "/home/reza/hamedan_seifi", "hamedan_seifi")
